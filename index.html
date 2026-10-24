@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tic-Tac-Toe AI | Play & Challenge</title>
+
+    <meta name="description"
+          content="Play Tic-Tac-Toe against AI or challenge a friend on the same device.">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <main class="container">
+
+        <header class="header">
+            <p class="tag">ARTIFICIAL INTELLIGENCE PROJECT</p>
+            <h1>Tic-Tac-Toe <span>AI</span></h1>
+            <p class="subtitle">
+                Challenge the computer or play with a friend.
+            </p>
+        </header>
+
+        <!-- Game mode selection -->
+        <section class="mode-selector" aria-label="Choose game mode">
+            <button id="aiMode" class="mode-btn active" type="button">
+                🤖 Play vs AI
+            </button>
+
+            <button id="twoPlayerMode" class="mode-btn" type="button">
+                👥 Two Players
+            </button>
+        </section>
+
+        <!-- Scoreboard -->
+        <section class="scoreboard" aria-label="Game scores">
+            <div class="score">
+                <span>You · X</span>
+                <strong id="humanScore">0</strong>
+            </div>
+
+            <div class="score">
+                <span>Draws</span>
+                <strong id="drawScore">0</strong>
+            </div>
+
+            <div class="score">
+                <span>AI · O</span>
+                <strong id="aiScore">0</strong>
+            </div>
+        </section>
+
+        <!-- Turn and result message -->
+        <div class="status-panel">
+            <span class="status-dot"></span>
+            <p id="status" class="status" aria-live="polite">
+                Your turn! Choose a square.
+            </p>
+        </div>
+
+        <!-- Tic-Tac-Toe board -->
+        <section id="board" class="board"
+                 aria-label="Tic-Tac-Toe game board">
+
+            <button class="cell" data-index="0"
+                    type="button" aria-label="Square 1"></button>
+
+            <button class="cell" data-index="1"
+                    type="button" aria-label="Square 2"></button>
+
+            <button class="cell" data-index="2"
+                    type="button" aria-label="Square 3"></button>
+
+            <button class="cell" data-index="3"
+                    type="button" aria-label="Square 4"></button>
+
+            <button class="cell" data-index="4"
+                    type="button" aria-label="Square 5"></button>
+
+            <button class="cell" data-index="5"
+                    type="button" aria-label="Square 6"></button>
+
+            <button class="cell" data-index="6"
+                    type="button" aria-label="Square 7"></button>
+
+            <button class="cell" data-index="7"
+                    type="button" aria-label="Square 8"></button>
+
+            <button class="cell" data-index="8"
+                    type="button" aria-label="Square 9"></button>
+
+        </section>
+
+        <!-- Game controls -->
+        <button id="restart" class="restart" type="button">
+            ↻ New Game
+        </button>
+
+        <p class="instructions">
+            Select a game mode and tap an empty square to play.
+        </p>
+
+        <footer class="footer">
+            <span>Built with Python & Flask</span>
+            <span class="footer-divider">•</span>
+            <span>Minimax AI</span>
+        </footer>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
