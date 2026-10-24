@@ -1,0 +1,355 @@
+
+/* =========================
+   1. Global styles
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --background: #0b1020;
+    --panel: #121b31;
+    --surface: #202b46;
+    --surface-hover: #2b3a5c;
+    --border: #34415f;
+    --text: #f3f4f6;
+    --muted: #a6b2cc;
+    --primary: #65e6d5;
+    --secondary: #b69aff;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px 14px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            #23345b 0%,
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            #20234a 0%,
+            transparent 35%
+        ),
+        var(--background);
+}
+
+/* =========================
+   2. Main application
+========================= */
+
+.container {
+    width: 100%;
+    max-width: 480px;
+    padding: 30px 24px;
+    text-align: center;
+    background: rgba(18, 27, 49, 0.96);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+}
+
+/* =========================
+   3. Header
+========================= */
+
+.tag {
+    margin-bottom: 12px;
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+h1 {
+    font-size: clamp(30px, 7vw, 42px);
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+h1 span {
+    color: var(--primary);
+}
+
+.subtitle {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================
+   4. Game mode buttons
+========================= */
+
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    margin: 26px 0 22px;
+}
+
+.mode-btn {
+    flex: 1;
+    min-width: 0;
+    padding: 13px 8px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--surface);
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.mode-btn:hover {
+    transform: translateY(-2px);
+    background: var(--surface-hover);
+}
+
+.mode-btn.active {
+    background: var(--primary);
+    color: #0b1020;
+    border-color: var(--primary);
+}
+
+button:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* =========================
+   5. Scoreboard
+========================= */
+
+.scoreboard {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 5px;
+    background: var(--surface);
+    border: 1px solid transparent;
+    border-radius: 13px;
+}
+
+.score span {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.score strong {
+    color: var(--text);
+    font-size: 27px;
+    line-height: 1;
+}
+
+/* =========================
+   6. Turn status
+========================= */
+
+.status-panel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 45px;
+    margin-bottom: 14px;
+    padding: 10px;
+    background: rgba(101, 230, 213, 0.07);
+    border: 1px solid rgba(101, 230, 213, 0.16);
+    border-radius: 12px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 12px rgba(101, 230, 213, 0.5);
+}
+
+.status {
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+/* =========================
+   7. Game board
+========================= */
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    width: 100%;
+    margin: 18px auto 22px;
+}
+
+.cell {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+    color: var(--primary);
+    font-size: clamp(38px, 10vw, 56px);
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.cell:hover:enabled {
+    background: var(--surface-hover);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.cell:active:enabled {
+    transform: scale(0.97);
+}
+
+.cell.o {
+    color: var(--secondary);
+}
+
+.cell:disabled {
+    cursor: default;
+    opacity: 1;
+}
+
+/* =========================
+   8. New Game button
+========================= */
+
+.restart {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: var(--primary);
+    color: #0b1020;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.restart:hover {
+    background: #8af3e6;
+    transform: translateY(-2px);
+}
+
+.restart:active {
+    transform: scale(0.99);
+}
+
+/* =========================
+   9. Instructions and footer
+========================= */
+
+.instructions {
+    margin-top: 17px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.footer-divider {
+    color: var(--primary);
+}
+
+/* =========================
+   10. Mobile responsiveness
+========================= */
+
+@media (max-width: 420px) {
+    body {
+        padding: 12px;
+    }
+
+    .container {
+        padding: 25px 16px;
+        border-radius: 20px;
+    }
+
+    .mode-selector {
+        gap: 7px;
+    }
+
+    .mode-btn {
+        padding: 12px 5px;
+        font-size: 12px;
+    }
+
+    .scoreboard {
+        gap: 7px;
+    }
+
+    .score {
+        padding: 12px 3px;
+    }
+
+    .score span {
+        font-size: 11px;
+    }
+
+    .board {
+        gap: 8px;
+    }
+
+    .cell {
+        border-radius: 12px;
+    }
+}
+
+/* =========================
+   11. Reduced motion
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+    }
+}
